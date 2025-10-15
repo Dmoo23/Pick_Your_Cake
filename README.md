@@ -9,8 +9,7 @@ Die App ist in Python mit [Streamlit](https://streamlit.io/) entwickelt und erm�
 
 ### 1. Rezepte hinzufügen
 - Neue Rezepte können über ein Eingabeformular erstellt werden.
-- Jede Zutat wird mit **Name**, **Menge** und **Einheit (g, ml, Stk)** eingegeben.
-- Zusätzliche Zutaten können über ein **“+”**-Feld hinzugefügt werden.
+- Jede Zutat wird mit **Name**, **Menge** und **Einheit (g, ml, Stk, EL, TL)** eingegeben.
 - Rezepte werden automatisch in `rezepte.json` gespeichert.
 
 ### 2. Rezepte kombinieren
