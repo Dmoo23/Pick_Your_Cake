@@ -23,8 +23,8 @@ st.title("🎂 Pick Your Cake – Rezepte kombinieren")
 # --------------------------
 st.subheader("🆕 Neues Rezept hinzufügen")
 
-name = st.text_input("Rezeptname (z. B. 'Boden' oder 'Creme')")
-kategorie = st.text_input("Kategorie")
+name = st.text_input("Rezeptname (z. B. Schokokuchen und Erdbeercreme)")
+kategorie = st.text_input("Kategorie (z. B. 'Boden' oder 'Creme')")
 groesse = st.number_input("Rezeptgröße (cm)", min_value=1, step=1)
 
 # Zutaten-Felder dynamisch verwalten
@@ -40,7 +40,7 @@ for i, zutat in enumerate(st.session_state.zutaten):
         zutat["name"] = st.text_input(f"Zutat {i+1}", value=zutat["name"], key=f"zutat_name_{i}")
     with cols[1]:
         zutat["einheit"] = st.selectbox(
-            "Einheit", ["g", "ml", "Stk"], index=["g", "ml", "Stk","EL","TL"].index(zutat["einheit"]), key=f"zutat_einheit_{i}"
+            "Einheit", ["g", "ml", "Stk","EL","TL"], index=["g", "ml", "Stk","EL","TL"].index(zutat["einheit"]), key=f"zutat_einheit_{i}"
         )
     with cols[2]:
         zutat["menge"] = st.number_input("Menge", min_value=0.0, value=float(zutat["menge"]), step=1.0, key=f"zutat_menge_{i}")
