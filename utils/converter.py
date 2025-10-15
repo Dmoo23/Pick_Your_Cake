@@ -41,3 +41,14 @@ def kombiniere_rezepte(rezept_liste, neue_groesse):
         for zutat, menge in umgerechnet.items():
             kombi[zutat] = kombi.get(zutat, 0) + menge
     return kombi
+
+def loesche_rezept(rezepte, name):
+    """
+    Löscht ein Rezept mit dem angegebenen Namen aus der Rezepte-Liste.
+    Gibt True zurück, wenn ein Rezept gelöscht wurde, sonst False.
+    """
+    for i, r in enumerate(rezepte):
+        if r["name"].lower() == name.lower():  # Name nicht case-sensitive
+            del rezepte[i]
+            return True
+    return False

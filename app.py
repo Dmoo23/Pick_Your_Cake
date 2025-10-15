@@ -14,6 +14,7 @@ import streamlit as st
 from utils.storage import load_rezepte, save_rezepte
 from utils.converter import umrechnen
 from utils.converter import kombiniere_rezepte
+from utils.converter import loesche_rezept
 
 
 st.title("🎂 Pick Your Cake – Rezepte kombinieren")
@@ -79,6 +80,24 @@ if st.button("💾 Rezept speichern"):
             st.session_state.zutaten = [{"name": "", "einheit": "g", "menge": 0.0}]  # reset
         else:
             st.warning(f"Rezept '{name}' existiert bereits!")
+
+
+st.header("❌ Rezept löschen")
+
+if rezepte:  # nur anzeigen, wenn Rezepte existieren
+    rezept_namen = [r["name"] for r in rezepte]
+    auswahl_loeschen = st.selectbox("Wähle ein Rezept zum Löschen", rezept_namen)
+
+    if st.button("Rezept löschen"):
+        erfolgreich = loesche_rezept(rezepte, auswahl_loeschen)
+        if erfolgreich:
+            save_rezepte(rezepte)
+            st.success(f"Rezept '{auswahl_loeschen}' wurde gelöscht!")
+            st.rerun()  # UI aktualisieren
+        else:
+            st.error("Fehler: Rezept nicht gefunden.")
+else:
+    st.info("Keine Rezepte zum Löschen vorhanden.")
 
 # --------------------------
 # Rezepte kombinieren & umrechnen
